@@ -14,13 +14,13 @@ async def read_form(request: Request):
     return templates.TemplateResponse("form.html", {"request": request})
 
 @app.post("/submit")
-async def submit(username: str = Form(...)):
+async def submit(username: str = Form(...), password: str = Form(...)):
     # Fai un redirect verso /name con il parametro nella query string
-    return RedirectResponse(url=f"/name?username={username}", status_code=303)
+    return RedirectResponse(url=f"/name?username={username}&password={password}", status_code=303)
 
 @app.get("/name")
-async def name(request: Request, username: str = ""):
+async def name(request: Request, username: str = "", password: str = ""):
     return templates.TemplateResponse(
-        "home.html", 
-        {"request": request, "name": username}
+        "dati_user.html", 
+        {"request": request, "name": username, "password": password}
     )
