@@ -1,10 +1,15 @@
 import sys
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import *
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtCore import QUrl
-import os
+import subprocess
+import time
 
-os.system(r'Z: && cd Metabase && java -jar metabase.jar')
+mainPath = r"Z:/Metabase"
+command = 'java -jar metabase.jar'
+run = subprocess.Popen('start cmd /k '+ command,cwd=mainPath,shell=True)
+
+time.sleep(20)
 
 app = QApplication(sys.argv)
 
